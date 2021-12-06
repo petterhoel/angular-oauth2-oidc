@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { authCodeFlowConfig } from '../auth-code-flow.config';
 import { ActivatedRoute } from '@angular/router';
+import {idServerConfig} from "../id-server-config";
 
 @Component({
   templateUrl: './home.component.html',
@@ -66,10 +67,9 @@ export class HomeComponent implements OnInit {
 
   async loginCode() {
     // Tweak config for code flow
-    this.oauthService.configure(authCodeFlowConfig);
+    this.oauthService.configure(idServerConfig());
     await this.oauthService.loadDiscoveryDocument();
     sessionStorage.setItem('flow', 'code');
-
     this.oauthService.initLoginFlow('/some-state;p1=1;p2=2?p3=3&p4=4');
     // the parameter here is optional. It's passed around and can be used after logging in
   }

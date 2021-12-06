@@ -20,11 +20,12 @@ import { RouterModule, ExtraOptions } from '@angular/router';
 import { CustomPreloadingStrategy } from './shared/preload/custom-preloading.strategy';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { useHash } from '../flags';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   imports: [
     BrowserModule,
-    RouterModule.forRoot(APP_ROUTES, { useHash }),
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

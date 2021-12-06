@@ -7,6 +7,7 @@ import { filter } from 'rxjs/operators';
 import { authCodeFlowConfig } from './auth-code-flow.config';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import { useHash } from '../flags';
+import {idServerConfig} from "./id-server-config";
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -35,7 +36,7 @@ export class AppComponent {
   }
 
   private configureCodeFlow() {
-    this.oauthService.configure(authCodeFlowConfig);
+    this.oauthService.configure(idServerConfig());
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then((_) => {
       if (useHash) {
         this.router.navigate(['/']);
